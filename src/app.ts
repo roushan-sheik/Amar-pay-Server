@@ -2,6 +2,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import express, { Request, Response } from "express";
 import connectDB from "./app/config/db";
+import { seedProducts } from "./app/config/seed";
 import { orderRoutes } from "./app/modules/order/order.routes";
 import { productRoutes } from "./app/modules/product/product.routes";
 
@@ -24,6 +25,6 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 connectDB();
-// seedProducts();
+seedProducts();
 
 export default app;

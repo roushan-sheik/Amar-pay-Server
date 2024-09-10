@@ -7,7 +7,7 @@ const connectDB = async () => {
   try {
     // console.log(process.env.DB_URL)
     await mongoose.connect(process.env.DB_URL as string, {
-      dbName: "arifa-mart",
+      dbName: "aamar-pay",
     });
     console.log("MongoDB Connected");
   } catch (error) {
