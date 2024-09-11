@@ -15,7 +15,7 @@ export const initiatePayment = async (paymentData: any) => {
     store_id: process.env.STORE_ID,
     signature_key: process.env.SIGNATURE_KEY,
     tran_id: transactionId,
-    success_url: "http://localhost:8000/api/v1/payment/confirmation",
+    success_url: `http://localhost:8000/api/v1/payment/confirmation?transactionId=${transactionId}`,
     fail_url: "http://www.merchantdomain.com/failedpage.html",
     cancel_url: "http://www.merchantdomain.com/cancellpage.html",
     amount: totalPrice,
@@ -31,6 +31,17 @@ export const initiatePayment = async (paymentData: any) => {
     cus_country: "Bangladesh",
     cus_phone: customerPhone,
     type: "json",
+  });
+  return response.data;
+};
+export const verifyPayment = async (transactionId: string) => {
+  const response = await axios.get(process.env.PAYMENT_VERIFY_URL!, {
+    params: {
+      store_id: process.env.STORE_ID,
+      signature_key: process.env.SIGNATURE_KEY,
+      request_id: transactionId,
+      type: "json",
+    },
   });
   return response.data;
 };
